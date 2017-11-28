@@ -1,3 +1,5 @@
-/**
- * Created by anke on 17/9/24.
- */
+const state = {
+  singer: {}
+}
+
+export default state

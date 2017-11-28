@@ -1,3 +1,7 @@
-/**
- * Created by anke on 17/9/24.
- */
+import * as types from './mutation-types'
+
+const matutaions = {
+  [types.SET_SINGER](state, singer){
+    state.singer = singer
+  }
+}

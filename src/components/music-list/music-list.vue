@@ -7,7 +7,8 @@
     <div class="bg-image" :style="bgStyle" ref="bgImage">
       <div class="filter"></div>
     </div>
-    <scroll :data="songs" class="list" ref="list">
+    <div class="bg-layer" ref="layer"></div>
+    <scroll @scroll="scroll" :probe-type="probeType" :listen-scroll="listenScroll" :data="songs" class="list" ref="list">
       <div class="song-list-wrapper">
         <song-list :songs="songs"></song-list>
       </div>
@@ -34,13 +35,34 @@ export default {
       default: ''
     }
   },
+  data() {
+    return {
+      scrollY: 0
+    }
+  },
   computed: {
     bgStyle () {
       return `background-image:url(${this.bgImage})`
     }
   },
+  created() {
+    this.probeType = 3
+    this.listenScroll = true
+  },
   mounted() {
+    this.imageHeight = this.$refs.bgImage.clientHeight
     this.$refs.list.$el.style.top = `${this.$refs.bgImage.clientHeight}px`
+  },
+  methods: {
+    scroll(pos) {
+      this.scrollY = pos.y
+    }
+  },
+  watch: {
+    scrollY(newY) {
+      this.$refs.layer.style['transform'] = `translate3d(0, ${newY}px, 0)`
+      this.$refs.layer.style['webkiTtransform'] = `translate3d(0, ${newY}px, 0)`
+    }
   },
   components: {
     Scroll,

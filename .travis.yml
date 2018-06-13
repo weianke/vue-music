@@ -25,7 +25,7 @@ install:
 before_script:
   - git config user.name "weianke"
   - git config user.email "245783065@qq.com"
-  - git clone --branch gh-pages https://github.com/weianke/vue-music.git dist
+  - git clone --branch gh-pages https://${GH_REF} dist
 
 script:
   - npm test
@@ -42,4 +42,4 @@ after_success:
 # Note: you should set Environment Variables here or 'Settings' on travis-ci.org
 env:
   global:
-    - GH_REF: https://github.com/weianke/vue-music.git
+    - GH_REF: github.com/weianke/vue-music.git

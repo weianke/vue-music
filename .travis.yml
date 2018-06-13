@@ -33,7 +33,7 @@ script:
 after_success:
   - npm run build
   - cd dist
-  - echo "ankemusic.pw" > CNAME
+  - echo "anke.io" > CNAME
   - cp index.html 404.html
   - git add --all .
   - git commit --message "Automatically update from travis-ci"

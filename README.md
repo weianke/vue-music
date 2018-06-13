@@ -154,7 +154,7 @@
 
 ``` bash
 # clone the repo into your disk.
-$ git clone https://github.com/bxm0927/music-app.git
+$ git clone https://github.com/weianke/vue-music.git
 
 # install dependencies
 $ npm install

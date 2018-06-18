@@ -5,7 +5,7 @@
     </div>
     <h1 class="title" v-html="title"></h1>
     <div class="bg-image" :style="bgStyle" ref="bgImage">
-      <div class="filter"></div>
+      <div class="filter" ref="filter"></div>
     </div>
     <div class="bg-layer" ref="layer"></div>
     <scroll @scroll="scroll" :probe-type="probeType" :listen-scroll="listenScroll" :data="songs" class="list" ref="list">
@@ -20,6 +20,7 @@
 import Scroll from 'base/scroll/scroll'
 import SongList from 'base/song-list/song-list'
 
+const RESERVED_HEIGHT = 40
 export default {
   props: {
     bgImage: {
@@ -35,7 +36,7 @@ export default {
       default: ''
     }
   },
-  data() {
+  data () {
     return {
       scrollY: 0
     }
@@ -45,23 +46,48 @@ export default {
       return `background-image:url(${this.bgImage})`
     }
   },
-  created() {
+  created () {
     this.probeType = 3
     this.listenScroll = true
   },
-  mounted() {
+  mounted () {
     this.imageHeight = this.$refs.bgImage.clientHeight
+    this.minTranslateY = -this.imageHeight + RESERVED_HEIGHT
     this.$refs.list.$el.style.top = `${this.$refs.bgImage.clientHeight}px`
   },
   methods: {
-    scroll(pos) {
+    scroll (pos) {
       this.scrollY = pos.y
     }
   },
   watch: {
-    scrollY(newY) {
-      this.$refs.layer.style['transform'] = `translate3d(0, ${newY}px, 0)`
-      this.$refs.layer.style['webkiTtransform'] = `translate3d(0, ${newY}px, 0)`
+    scrollY (newY) {
+      let tranlateY = Math.max(this.minTranslateY, newY)
+      let zIndex = 0
+      let scale = 1
+      let blur = 0
+      this.$refs.layer.style['transform'] = `translate3d(0, ${tranlateY}px, 0)`
+      this.$refs.layer.style['webkiTtransform'] = `translate3d(0, ${tranlateY}px, 0)`
+      const percent = Math.abs(newY / this.imageHeight)
+      if (newY > 0) {
+        scale = 1 + percent
+        zIndex = 10
+      } else {
+        blur = Math.min(20 * percent, 20)
+      }
+      this.$refs.filter.style['backdrop-filter'] = `blur(${blur}px)`
+      this.$refs.filter.style['webkitBackdrop-filter'] = `blur(${blur}px)`
+      if (newY < this.minTranslateY) {
+        zIndex = 10
+        this.$refs.bgImage.style.paddingTop = 0
+        this.$refs.bgImage.style.height = `${RESERVED_HEIGHT}px`
+      } else {
+        this.$refs.bgImage.style.paddingTop = '70%'
+        this.$refs.bgImage.style.height = 0
+      }
+      this.$refs.bgImage.style.zIndex = zIndex
+      this.$refs.bgImage.style['transform'] = `scale(${scale})`
+      this.$refs.bgImage.style['webkiTtransform'] = `scale(${scale})`
     }
   },
   components: {

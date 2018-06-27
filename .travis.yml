@@ -33,7 +33,7 @@ after_success:
   - cp index.html 404.html
   - git add --all .
   - git commit --message "Automatically update from travis-ci"
-  - git push --quiet --force  "https://${travis}@${GH_REF}" gh-pages:gh-pages
+  - git push --quiet --force  "https://${travis}@${GH_REF}" master:master
 
 # Note: you should set Environment Variables here or 'Settings' on travis-ci.org
 env:

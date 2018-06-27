@@ -38,4 +38,4 @@ after_success:
 # Note: you should set Environment Variables here or 'Settings' on travis-ci.org
 env:
   global:
-    - GH_REF: github.com/weianke/vue-music.git
+    - GH_REF: https://github.com/weianke/weianke.github.io.git

@@ -25,15 +25,11 @@ install:
 before_script:
   - git config user.name "weianke"
   - git config user.email "245783065@qq.com"
-  - git clone --branch gh-pages https://${GH_REF} dist
-
-script:
-  - npm test
 
 after_success:
   - npm run build
   - cd dist
-  - echo "anke.pw" > CNAME
+  - echo "weianke.github.io" > CNAME
   - cp index.html 404.html
   - git add --all .
   - git commit --message "Automatically update from travis-ci"

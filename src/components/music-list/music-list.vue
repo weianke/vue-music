@@ -19,8 +19,12 @@
 <script  type='text/ecmascript-6'>
 import Scroll from 'base/scroll/scroll'
 import SongList from 'base/song-list/song-list'
+import { prefixStyle } from 'common/js/dom'
 
 const RESERVED_HEIGHT = 40
+const transform = prefixStyle('transform')
+const backdrop = prefixStyle('backdrop-filter')
+
 export default {
   props: {
     bgImage: {
@@ -66,8 +70,7 @@ export default {
       let zIndex = 0
       let scale = 1
       let blur = 0
-      this.$refs.layer.style['transform'] = `translate3d(0, ${tranlateY}px, 0)`
-      this.$refs.layer.style['webkiTtransform'] = `translate3d(0, ${tranlateY}px, 0)`
+      this.$refs.layer.style[transform] = `translate3d(0, ${tranlateY}px, 0)`
       const percent = Math.abs(newY / this.imageHeight)
       if (newY > 0) {
         scale = 1 + percent
@@ -75,8 +78,7 @@ export default {
       } else {
         blur = Math.min(20 * percent, 20)
       }
-      this.$refs.filter.style['backdrop-filter'] = `blur(${blur}px)`
-      this.$refs.filter.style['webkitBackdrop-filter'] = `blur(${blur}px)`
+      this.$refs.filter.style[backdrop] = `blur(${blur}px)`
       if (newY < this.minTranslateY) {
         zIndex = 10
         this.$refs.bgImage.style.paddingTop = 0
@@ -86,8 +88,7 @@ export default {
         this.$refs.bgImage.style.height = 0
       }
       this.$refs.bgImage.style.zIndex = zIndex
-      this.$refs.bgImage.style['transform'] = `scale(${scale})`
-      this.$refs.bgImage.style['webkiTtransform'] = `scale(${scale})`
+      this.$refs.bgImage.style[transform] = `scale(${scale})`
     }
   },
   components: {

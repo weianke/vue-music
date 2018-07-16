@@ -1,6 +1,6 @@
 <template>
   <div>
-    排行页面22222
+    排行页面
   </div>
 </template>
 

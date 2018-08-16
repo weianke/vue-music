@@ -46,4 +46,3 @@
         font-size: 20px
         color: $color-theme
 </style>
-

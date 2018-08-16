@@ -12,8 +12,7 @@ export function getSingerList() {
     pagenum: 1,
     hostUin: 0,
     needNewCode: 0,
-    platform: 'yqq',
-    g_tk: 16664029744
+    platform: 'yqq'
   })
 
   return jsonp(url, data, options)
@@ -35,3 +34,4 @@ export function getSingerDetail(singerId) {
 
   return jsonp(url, data, options)
 }
+

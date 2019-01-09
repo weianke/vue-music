@@ -3,10 +3,10 @@
 
 基于 **Vue 全家桶 (2.x)** 制作的移动端音乐 WebApp ，一个媲美原生的移动端音乐 App，项目完整、功能完备、UI美观、交互一流。
 
+👉 项目演示地址: https://weianke.github.io/vueMusic/ （在GitHub Pages 中，通过 jsonp 请求的数据会被正常渲染，而由于无 node 服务，通过 axios 请求的数据不会被正常渲染）
+
+
 ![图片预览](http://oph264zoo.bkt.clouddn.com/17-8-11/52879457.jpg)
-
-👉 项目演示地址: https://weianke.github.io/vueMusic/（在 GitHub Pages 中，通过 jsonp 请求的数据会被正常渲染，而由于无 node 服务，通过 axios 请求的数据不会被正常渲染）
-
 
 ## 技术栈
 
